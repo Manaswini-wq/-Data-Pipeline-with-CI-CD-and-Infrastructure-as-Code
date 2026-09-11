@@ -1,0 +1,7 @@
+name: "ecommerce_analytics"
+version: "1.0.0"
+profile: "ecommerce"
+model-paths: ["models"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
