@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  pipeline:
+    build: .
+    env_file: .env
+    volumes:
+      - ./dbt_project:/app/dbt_project
+    command: >
+      bash -c "
+        python -m src.ingest &&
+        cd dbt_project && dbt run --profiles-dir . &&
+        dbt test --profiles-dir . &&
+        cd .. && python -m data_quality.expectations
+      "
